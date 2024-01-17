@@ -1,93 +1,73 @@
-# Cloud Computing Assignment - Creating a Dynamic Stock Market Data Pipeline
+# Creating a Dynamic Stock Market Data Pipeline (MSc. in Computing - Cloud Computing Project)
 
 
+## Overview
 
-## Getting started
+This repository contains an end-to-end data pipeline for financial analytics, focusing on Google, Meta, Tesla, and Apple stocks. The pipeline leverages Google Cloud Platform (GCP) services, including Google Cloud Storage, Spark Dataproc, BigQuery, and Looker Studio.
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+## Table of Contents
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+1. [Introduction](#introduction)
+2. [Motivation and Technology Choice](#motivation-and-technology-choice)
+3. [Workflow](#workflow)
+4. [Related Research](#related-research)
+5. [Dataset Description](#dataset-description)
+6. [Data Preprocessing and Cleaning](#data-preprocessing-and-cleaning)
+7. [Data Processing](#data-processing)
+8. [Predictive Analytics](#predictive-analytics)
+9. [Sentiment Analysis](#sentiment-analysis)
+10. [Spark to BigQuery Integration](#spark-to-bigquery-integration)
+11. [Development of the Application Platform](#development-of-the-application-platform)
+12. [Challenges and Lessons Learned](#challenges-and-lessons-learned)
+13. [Roles and Responsibilities](#roles-and-responsibilities)
 
-## Add your files
+## Introduction
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+The project aims to develop a comprehensive financial analytics solution for stockholders, covering data ingestion, cleaning, modeling, and the creation of an interactive dashboard. The pipeline is built using GCP services and Spark Dataproc, incorporating predictive analytics through Linear Regression and sentiment analysis using NLTK's Vader module.
 
-```
-cd existing_repo
-git remote add origin https://gitlab.computing.dcu.ie/patils5/cloud-computing-assignment-2.git
-git branch -M main
-git push -uf origin main
-```
+## Motivation and Technology Choice
 
-## Integrate with your tools
+GCP was chosen over AWS for its seamless integration with Data Studio, simplifying dashboard creation. Spark Dataproc was selected for big data processing due to its in-memory processing capabilities, speed, and efficiency. The project focuses on predicting individual stock prices, utilizing a diverse range of data sources, and employing sophisticated sentiment analysis with VADER.
 
-- [ ] [Set up project integrations](https://gitlab.computing.dcu.ie/patils5/cloud-computing-assignment-2/-/settings/integrations)
+## Workflow
 
-## Collaborate with your team
+The workflow involves data extraction from Quandl API, Yahoo Finance, and Kaggle datasets. Data preprocessing includes cleaning, merging, and analysis in Jupyter Lab within a Spark Dataproc cluster. Predictive analytics using Linear Regression and sentiment analysis are performed, followed by Spark to BigQuery integration for actionable analytics. The results are visualized in Looker Studio.
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+## Related Research
 
-## Test and Deploy
+The project differs from related works by incorporating a broader range of data sources, utilizing VADER for sentiment analysis, and focusing on individual stock prices rather than market movements.
 
-Use the built-in continuous integration in GitLab.
+## Dataset Description
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+Datasets from Quandl API, Yahoo Finance, and Kaggle are used, covering the timeframes 2010-2018 and 2018-2020. Features include Open, Close, High, Low, Volume, and Adjusted Close. Sentiment analysis is performed using a Kaggle dataset containing tweets about the top companies from 2015-2020.
 
-***
+## Data Preprocessing and Cleaning
 
-# Editing this README
+Quandl API and Yahoo Finance data are merged, cleaned, and analyzed in Jupyter Lab within a Spark Dataproc cluster. The results are exported to Cloud Storage in CSV format.
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
+## Data Processing
 
-## Suggestions for a good README
+Spark is utilized for merging and analyzing stock data from multiple sources. Basic statistics are computed on the combined dataset, showcasing the power of PySpark for efficient data processing.
 
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+## Predictive Analytics
 
-## Name
-Choose a self-explaining name for your project.
+Linear Regression is deployed using PySpark for stock price forecasting. The model is trained, and predictions are made on testing data. The results are exported to Cloud Storage in CSV format.
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+## Sentiment Analysis
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+Twitter data is loaded, merged, and analyzed using VADER sentiment analysis within a Spark Dataproc cluster. Sentiment analysis results are saved to Cloud Storage.
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+## Spark to BigQuery Integration
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+CSV files stored in Cloud Storage are seamlessly converted into tables using Google BigQuery, facilitating actionable insights.
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+## Development of the Application Platform
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+Tools like Google Cloud Storage, Spark, BigQuery, and Looker Studio are utilized for data extraction, processing, and visualization. Spark commands in JupyterLab and Looker Studio provide a cohesive end-to-end solution.
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+## Challenges and Lessons Learned
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+Challenges included AWS policy restrictions and data inconsistencies during processing. Proper attention to preprocessing, planning, and selecting the right tools is crucial.
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+Feel free to explore the code snippets and documentation within the repository for detailed implementation details.
