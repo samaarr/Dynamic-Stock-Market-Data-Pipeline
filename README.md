@@ -1,4 +1,4 @@
-# Cloud Computing Assignment 2
+# Cloud Computing Assignment - Creating a Dynamic Stock Market Data Pipeline
 
 
 
